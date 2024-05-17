@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ChatOllamaConfig {
   baseUrl = 'http://localhost:11434'; // Default values
-  model = 'phi3';
+  model = 'llama3-chatqa';
   temperature=1;
 }

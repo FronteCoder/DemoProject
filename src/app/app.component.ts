@@ -27,18 +27,41 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     const prompt = ChatPromptTemplate.fromMessages([
-      ["system", "You are a pokemon geek."],
+      ["system", "You are a professional chef"],
       ["user", "{input}"],
     ]);
-    
+    const prompt2 = ChatPromptTemplate.fromMessages([
+      ["system", "You are Indian."],
+      ["user", "{input}"],
+    ]);
+    const prompt3 = ChatPromptTemplate.fromMessages([
+      ["system", "You are Mexican."],
+      ["user", "{input}"],
+    ]);
+    const prompt4 = ChatPromptTemplate.fromMessages([
+      ["system", "You are Mosquito."],
+      ["user", "{input}"],
+    ]);
+    //creating different chains with different prompts
     const chain=prompt.pipe(this.ChatOllama)
-    // Invoking chat model directly
-    this.ChatOllama.invoke("Tell me about psyduck").then((resolve:any)=>{
-        
+    const chain2=prompt2.pipe(this.ChatOllama)
+    const chain3=prompt3.pipe(this.ChatOllama)
+    const chain4=prompt4.pipe(this.ChatOllama)
+
+
+    //Invoking different chains
+    chain.invoke({input:"Tell me about your favourite food?"}).then((resolve:any)=>{
+      console.log(resolve,"chain invoke");   
     })
-    //Invoking Chat model using chain
-    chain.invoke({input:"Tell me about psyduck?"}).then((resolve:any)=>{
-      console.log(resolve,"chain invoke");
+    chain2.invoke({input:"Tell me about your favourite food?"}).then((resolve:any)=>{
+      console.log(resolve,"chain 1 invoke");   
     })
+    chain3.invoke({input:"Tell me about your favourite food?"}).then((resolve:any)=>{
+      console.log(resolve,"chain 2 invoke");   
+    })
+    chain4.invoke({input:"Tell me about your favourite food?"}).then((resolve:any)=>{
+      console.log(resolve,"chain 3 invoke");   
+    })
+
   }
 }
